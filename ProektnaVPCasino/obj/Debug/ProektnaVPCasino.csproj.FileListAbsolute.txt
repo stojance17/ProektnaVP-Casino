@@ -9,3 +9,4 @@ G:\GitProjects\ProektnaVPCasino\ProektnaVPCasino\obj\Debug\ProektnaVPCasino.cspr
 G:\GitProjects\ProektnaVPCasino\ProektnaVPCasino\obj\Debug\ProektnaVPCasino.csproj.CoreCompileInputs.cache
 G:\GitProjects\ProektnaVPCasino\ProektnaVPCasino\obj\Debug\SameFormTest.exe
 G:\GitProjects\ProektnaVPCasino\ProektnaVPCasino\obj\Debug\SameFormTest.pdb
+G:\GitProjects\ProektnaVPCasino\ProektnaVPCasino\obj\Debug\SameFormTest.UplataPariForm.resources
