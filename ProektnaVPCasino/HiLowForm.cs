@@ -53,6 +53,7 @@ namespace SameFormTest
             cards.Add(Resources.hearts_14);
             
             pariInt = startCash;
+            betTip.Maximum = pariInt;
             timer1.Start();
             update();
             DoubleBuffered = true;
@@ -129,7 +130,8 @@ namespace SameFormTest
         //Updates Value
         private void update()
         {
-            pari.Text = pariInt.ToString(); 
+            pari.Text = pariInt.ToString();
+            betTip.Maximum = pariInt;
         }
         private void btnHi_Click(object sender, EventArgs e)
         {
