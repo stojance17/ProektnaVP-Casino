@@ -34,6 +34,7 @@
             this.vkPari = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.uplatiPari = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -65,8 +66,10 @@
             // 
             // vkPari
             // 
+            this.vkPari.Enabled = false;
             this.vkPari.Location = new System.Drawing.Point(653, 418);
             this.vkPari.Name = "vkPari";
+            this.vkPari.ReadOnly = true;
             this.vkPari.Size = new System.Drawing.Size(100, 20);
             this.vkPari.TabIndex = 5;
             this.vkPari.Text = "0";
@@ -89,19 +92,31 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Pari za sledna igra";
             // 
-            // Form2
+            // uplatiPari
+            // 
+            this.uplatiPari.Location = new System.Drawing.Point(653, 270);
+            this.uplatiPari.Name = "uplatiPari";
+            this.uplatiPari.Size = new System.Drawing.Size(100, 100);
+            this.uplatiPari.TabIndex = 8;
+            this.uplatiPari.Text = "Uplati Pari";
+            this.uplatiPari.UseVisualStyleBackColor = true;
+            this.uplatiPari.Click += new System.EventHandler(this.uplatiPari_Click);
+            // 
+            // GlavnaForma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.uplatiPari);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.vkPari);
             this.Controls.Add(this.pariZaSlednaIgra);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.Name = "Form2";
+            this.Name = "GlavnaForma";
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.GlavnaForma_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,5 +130,6 @@
         private System.Windows.Forms.TextBox vkPari;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button uplatiPari;
     }
 }
