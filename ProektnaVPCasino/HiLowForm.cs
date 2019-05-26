@@ -31,7 +31,7 @@ namespace SameFormTest
         public bool first = true;
         public int i = 0;
         public int cashOutMoney { get; set; }
-
+        public int pariInt { get; set; }
         public HiLowForm(int startCash)
         {
             InitializeComponent();
@@ -51,8 +51,10 @@ namespace SameFormTest
             cards.Add(Resources.hearts_12);
             cards.Add(Resources.hearts_13);
             cards.Add(Resources.hearts_14);
-            pari.Text = startCash.ToString();
+            
+            pariInt = startCash;
             timer1.Start();
+            update();
             DoubleBuffered = true;
                        
         }
@@ -113,6 +115,7 @@ namespace SameFormTest
             refreshImages();
 
         }
+
         //Refresh Card Images
         private void refreshImages()
         {
@@ -123,8 +126,11 @@ namespace SameFormTest
             timer1.Start();
         }
         
-
-        
+        //Updates Value
+        private void update()
+        {
+            pari.Text = pariInt.ToString(); 
+        }
         private void btnHi_Click(object sender, EventArgs e)
         {
             nextCardVal = 1;
@@ -132,22 +138,24 @@ namespace SameFormTest
 
             if (first)
             {
-                pari.Text = (int.Parse(pari.Text) - (int)betTip.Value).ToString();
+                pariInt = pariInt - (int)betTip.Value;
                 first = false;
             }
             else
-            {          
+            {       
+                
                 cashOutAmount.Text = (int.Parse(cashOutAmount.Text) - (int)betTip.Value).ToString();
                 first = false;
             }
 
-            if (int.Parse(pari.Text) < 0)
+            if (pariInt < 0)
             {
                 MessageBox.Show("Gi potrosivte vasite pari","KRAJ IGRA", MessageBoxButtons.OK);
                 endGame();
                 return;
                 
             }
+            update();
             generateNextCard();
             checkCards();
             return;
@@ -159,7 +167,7 @@ namespace SameFormTest
             //Kod da zima pari za bettip
             if (first)
             {
-                pari.Text = (int.Parse(pari.Text) - (int)betTip.Value).ToString();
+                pariInt = pariInt - (int)betTip.Value;
                 first = false;
             }
             else
@@ -167,16 +175,18 @@ namespace SameFormTest
                 cashOutAmount.Text = (int.Parse(cashOutAmount.Text) - (int)betTip.Value).ToString();
                 first = false;
             }
-            if (int.Parse(pari.Text) < 0)
+            if (pariInt < 0)
             {
                 MessageBox.Show("Gi potrosivte vasite pari", "KRAJ IGRA", MessageBoxButtons.OK);
                 endGame();
                 return;
             }
+            update();
             generateNextCard();
             checkCards();
             return;
         }
+
         //Resetira vrednosti
         private void reset()
         {
@@ -185,14 +195,17 @@ namespace SameFormTest
             pogodeni.Text = "0";
             betTip.Enabled = true;
             first = true;
-            betTip.Maximum = int.Parse(pari.Text);
+            betTip.Maximum = pariInt;
             cashOutAmount.Text = "0";
             
         }
+
         private void cashOutbtn_Click(object sender, EventArgs e)
         {
             //Reset values
-            pari.Text = (int.Parse(pari.Text) + dobivka).ToString();
+            //pari.Text = (int.Parse(pari.Text) + dobivka).ToString();
+            pariInt = pariInt + dobivka;
+            update();
             reset();
         }
 
@@ -205,7 +218,8 @@ namespace SameFormTest
         //Funkcija za zavrsuvanje na igra
         private void endGame()
         {
-            pari.Text = (int.Parse(pari.Text) + dobivka).ToString();
+            //pari.Text = (int.Parse(pari.Text) + dobivka).ToString();
+            pariInt = pariInt + dobivka;
             cashOutMoney = int.Parse(pari.Text);
             reset();
             this.Close();
