@@ -10,3 +10,15 @@ G:\GitProjects\ProektnaVPCasino\ProektnaVPCasino\obj\Debug\ProektnaVPCasino.cspr
 G:\GitProjects\ProektnaVPCasino\ProektnaVPCasino\obj\Debug\SameFormTest.exe
 G:\GitProjects\ProektnaVPCasino\ProektnaVPCasino\obj\Debug\SameFormTest.pdb
 G:\GitProjects\ProektnaVPCasino\ProektnaVPCasino\obj\Debug\SameFormTest.UplataPariForm.resources
+D:\GitRepos\ProektnaVP-Casino\ProektnaVPCasino\bin\Debug\SameFormTest.exe.config
+D:\GitRepos\ProektnaVP-Casino\ProektnaVPCasino\bin\Debug\SameFormTest.exe
+D:\GitRepos\ProektnaVP-Casino\ProektnaVPCasino\bin\Debug\SameFormTest.pdb
+D:\GitRepos\ProektnaVP-Casino\ProektnaVPCasino\obj\Debug\ProektnaVPCasino.csprojAssemblyReference.cache
+D:\GitRepos\ProektnaVP-Casino\ProektnaVPCasino\obj\Debug\SameFormTest.HiLowForm.resources
+D:\GitRepos\ProektnaVP-Casino\ProektnaVPCasino\obj\Debug\SameFormTest.GlavnaForma.resources
+D:\GitRepos\ProektnaVP-Casino\ProektnaVPCasino\obj\Debug\SameFormTest.Properties.Resources.resources
+D:\GitRepos\ProektnaVP-Casino\ProektnaVPCasino\obj\Debug\SameFormTest.UplataPariForm.resources
+D:\GitRepos\ProektnaVP-Casino\ProektnaVPCasino\obj\Debug\ProektnaVPCasino.csproj.GenerateResource.cache
+D:\GitRepos\ProektnaVP-Casino\ProektnaVPCasino\obj\Debug\ProektnaVPCasino.csproj.CoreCompileInputs.cache
+D:\GitRepos\ProektnaVP-Casino\ProektnaVPCasino\obj\Debug\SameFormTest.exe
+D:\GitRepos\ProektnaVP-Casino\ProektnaVPCasino\obj\Debug\SameFormTest.pdb

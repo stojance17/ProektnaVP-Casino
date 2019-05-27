@@ -33,6 +33,7 @@ namespace SameFormTest
         public int cashOutMoney { get; set; }
         public int pariInt { get; set; }
         public HiLowForm(int startCash)
+        
         {
             InitializeComponent();
             rand = new Random();
@@ -51,7 +52,7 @@ namespace SameFormTest
             cards.Add(Resources.hearts_12);
             cards.Add(Resources.hearts_13);
             cards.Add(Resources.hearts_14);
-            
+            BackColor = Color.White;
             pariInt = startCash;
             betTip.Maximum = pariInt;
             timer1.Start();
@@ -72,6 +73,11 @@ namespace SameFormTest
                     generateNextCard();
                     return;
                 }
+            if (nextCard == 11)
+            {
+                generateNextCard();
+                return;
+            }
         }
 
         public void checkCards()
@@ -82,16 +88,16 @@ namespace SameFormTest
             //Proverue dali korisnikot odbral Visoka
             if (nextCardVal == 1)
             {
-                
+
                 if (nextCard >= currCard)
                 {
                     MessageBox.Show("Bravo");
                     pogodeniKarti++;
                     dobivka = (int)betTip.Value * pogodeniKarti + int.Parse(cashOutAmount.Text);
                 }
-                
                 else
                 {
+
                     MessageBox.Show("BOOOO");
                     reset();
                 }
@@ -111,8 +117,7 @@ namespace SameFormTest
                     reset();
                 }
             }
-            
-            cashOutAmount.Text = dobivka.ToString();
+
             refreshImages();
 
         }
@@ -120,6 +125,7 @@ namespace SameFormTest
         //Refresh Card Images
         private void refreshImages()
         {
+            cashOutAmount.Text = dobivka.ToString();
             pogodeni.Text = pogodeniKarti.ToString();
             currCard = nextCard;           
             picBoxCurr.Image = cards[currCard - 1];      
@@ -138,6 +144,17 @@ namespace SameFormTest
             nextCardVal = 1;
             //Kod da zima pari za bettip
 
+            if (pariInt <= 0)
+            {
+                MessageBox.Show("Gi potrosivte vasite pari","KRAJ IGRA", MessageBoxButtons.OK);
+                endGame();
+                return;
+                
+            }
+            if (betTip.Minimum > pariInt)
+            {
+                betTip.Minimum = pariInt;
+            }
             if (first)
             {
                 pariInt = pariInt - (int)betTip.Value;
@@ -150,13 +167,8 @@ namespace SameFormTest
                 first = false;
             }
 
-            if (pariInt < 0)
-            {
-                MessageBox.Show("Gi potrosivte vasite pari","KRAJ IGRA", MessageBoxButtons.OK);
-                endGame();
-                return;
-                
-            }
+            betTip.Enabled = false;
+
             update();
             generateNextCard();
             checkCards();
@@ -167,6 +179,16 @@ namespace SameFormTest
         {
             nextCardVal = 0;
             //Kod da zima pari za bettip
+            if (pariInt <= 0)
+            {
+                MessageBox.Show("Gi potrosivte vasite pari", "KRAJ IGRA", MessageBoxButtons.OK);
+                endGame();
+                return;
+            }
+            if (betTip.Minimum > pariInt)
+            {
+                betTip.Minimum = pariInt;
+            }
             if (first)
             {
                 pariInt = pariInt - (int)betTip.Value;
@@ -177,12 +199,7 @@ namespace SameFormTest
                 cashOutAmount.Text = (int.Parse(cashOutAmount.Text) - (int)betTip.Value).ToString();
                 first = false;
             }
-            if (pariInt < 0)
-            {
-                MessageBox.Show("Gi potrosivte vasite pari", "KRAJ IGRA", MessageBoxButtons.OK);
-                endGame();
-                return;
-            }
+            betTip.Enabled = false;
             update();
             generateNextCard();
             checkCards();
@@ -199,7 +216,7 @@ namespace SameFormTest
             first = true;
             betTip.Maximum = pariInt;
             cashOutAmount.Text = "0";
-            
+            betTip.Enabled = true;
         }
 
         private void cashOutbtn_Click(object sender, EventArgs e)
@@ -230,6 +247,13 @@ namespace SameFormTest
         {
             endGame();
 
+        }
+
+        private void HiLowForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            pariInt = pariInt + dobivka;
+            cashOutMoney = int.Parse(pari.Text);
+            reset();
         }
     }
 }

@@ -41,6 +41,8 @@
             this.cashOutAmount = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.endGamebtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxCurr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxNext)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.betTip)).BeginInit();
@@ -113,10 +115,20 @@
             // 
             // betTip
             // 
-            this.betTip.Location = new System.Drawing.Point(201, 414);
+            this.betTip.Location = new System.Drawing.Point(222, 413);
+            this.betTip.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.betTip.Name = "betTip";
             this.betTip.Size = new System.Drawing.Size(58, 20);
             this.betTip.TabIndex = 9;
+            this.betTip.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // cashOutbtn
             // 
@@ -152,11 +164,33 @@
             this.endGamebtn.UseVisualStyleBackColor = true;
             this.endGamebtn.Click += new System.EventHandler(this.endGamebtn_Click);
             // 
-            // Form1
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(231, 390);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 20);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Bet ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(142, 390);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 20);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Money";
+            // 
+            // HiLowForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 441);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.endGamebtn);
             this.Controls.Add(this.cashOutAmount);
             this.Controls.Add(this.cashOutbtn);
@@ -167,8 +201,9 @@
             this.Controls.Add(this.pogodeni);
             this.Controls.Add(this.btnLow);
             this.Controls.Add(this.btnHi);
-            this.Name = "Form1";
+            this.Name = "HiLowForm";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HiLowForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.picBoxCurr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxNext)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.betTip)).EndInit();
@@ -190,6 +225,8 @@
         private System.Windows.Forms.TextBox cashOutAmount;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button endGamebtn;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
