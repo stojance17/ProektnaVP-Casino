@@ -22,13 +22,9 @@ namespace SameFormTest
         private void button1_Click_1(object sender, EventArgs e)
         {
             //Pravi proverki dali ima dovolno pari i dali e korekten inputot za da nema exception
-            if (pariZaSlednaIgra.Text == "")
+            if (pariZaSlednaIgra.Text == "" || int.Parse(pariZaSlednaIgra.Text)==0)
             {
-                MessageBox.Show("Vnesete suma za sledna igra");
-                return;
-            }
-            else if (int.Parse(pariZaSlednaIgra.Text) <= 0)
-            {
+                MessageBox.Show("Vnesete validna suma za sledna igra");
                 return;
             }
             else if (int.Parse(pariZaSlednaIgra.Text) > vkupnoPari)
@@ -61,9 +57,10 @@ namespace SameFormTest
 
             //Ja vrakja vrednosta osvoena/izgubena od igrata
             vkupnoPari = vkupnoPari + HiLowForm1.cashOutMoney;
-
-           
             update();
+            this.Location = HiLowForm1.Location;
+            this.Width = HiLowForm1.Width;
+            this.Height = HiLowForm1.Height;
             // #6. Set parent form's visible to true
             this.Visible = true;
         }
