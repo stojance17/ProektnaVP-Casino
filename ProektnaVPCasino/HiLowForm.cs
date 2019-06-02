@@ -17,7 +17,6 @@ namespace SameFormTest
     {
 
         //Hi-Low Logic
-
         Random rand;
         public static int MIN_SIZE = 1;
         public static int MAX_SIZE = 14;
@@ -78,6 +77,7 @@ namespace SameFormTest
                 generateNextCard();
                 return;
             }
+
         }
 
         public void checkCards()
@@ -86,38 +86,17 @@ namespace SameFormTest
             picBoxCurr.Image = cards[currCard - 1];
 
             //Proverue dali korisnikot odbral Visoka
-            if (nextCardVal == 1)
+            if((nextCardVal == 1 && nextCard>currCard)||(nextCardVal == 0 && nextCard < currCard))
             {
-
-                if (nextCard >= currCard)
-                {
-                    MessageBox.Show("Bravo");
-                    pogodeniKarti++;
-                    dobivka = (int)betTip.Value * pogodeniKarti + int.Parse(cashOutAmount.Text);
-                }
-                else
-                {
-
-                    MessageBox.Show("BOOOO");
-                    reset();
-                }
+                MessageBox.Show("Bravo");
+                pogodeniKarti++;
+                dobivka = (int)betTip.Value * pogodeniKarti + int.Parse(cashOutAmount.Text);
             }
-            // Ili odbral niska
             else
             {
-                if (nextCard <= currCard)
-                {
-                    MessageBox.Show("Bravo");
-                    pogodeniKarti++;
-                    dobivka = (int)betTip.Value * pogodeniKarti + int.Parse(cashOutAmount.Text);
-                }
-                else
-                {
-                    MessageBox.Show("BOOOO");
-                    reset();
-                }
+                MessageBox.Show("BOOOO");
+                reset();
             }
-
             refreshImages();
 
         }
@@ -137,58 +116,17 @@ namespace SameFormTest
         private void update()
         {
             pari.Text = pariInt.ToString();
-            betTip.Maximum = pariInt;
+            //betTip.Maximum = pariInt;
         }
-        private void btnHi_Click(object sender, EventArgs e)
+        public void btnClickfunciton()
         {
-            nextCardVal = 1;
             //Kod da zima pari za bettip
-
-            if (pariInt <= 0)
-            {
-                MessageBox.Show("Gi potrosivte vasite pari","KRAJ IGRA", MessageBoxButtons.OK);
-                endGame();
-                return;
-                
-            }
-            if (betTip.Minimum > pariInt)
-            {
-                betTip.Minimum = pariInt;
-            }
-            if (first)
-            {
-                pariInt = pariInt - (int)betTip.Value;
-                first = false;
-            }
-            else
-            {       
-                
-                cashOutAmount.Text = (int.Parse(cashOutAmount.Text) - (int)betTip.Value).ToString();
-                first = false;
-            }
-
-            betTip.Enabled = false;
-
-            update();
-            generateNextCard();
-            checkCards();
-            return;
-        }
-
-        private void btnLow_Click(object sender, EventArgs e)
-        {
-            nextCardVal = 0;
-            //Kod da zima pari za bettip
-            if (pariInt <= 0)
+            if (pariInt < 0)
             {
                 MessageBox.Show("Gi potrosivte vasite pari", "KRAJ IGRA", MessageBoxButtons.OK);
                 endGame();
                 return;
             }
-            if (betTip.Minimum > pariInt)
-            {
-                betTip.Minimum = pariInt;
-            }
             if (first)
             {
                 pariInt = pariInt - (int)betTip.Value;
@@ -196,16 +134,32 @@ namespace SameFormTest
             }
             else
             {
+
                 cashOutAmount.Text = (int.Parse(cashOutAmount.Text) - (int)betTip.Value).ToString();
                 first = false;
             }
+        }
+
+        private void btnHi_Click(object sender, EventArgs e)
+        {
+            nextCardVal = 1;
+            btnClickfunciton();
             betTip.Enabled = false;
             update();
             generateNextCard();
             checkCards();
             return;
         }
-
+        private void btnLow_Click(object sender, EventArgs e)
+        {
+            nextCardVal = 0;
+            btnClickfunciton();
+            betTip.Enabled = false;
+            update();
+            generateNextCard();
+            checkCards();
+            return;
+        }
         //Resetira vrednosti
         private void reset()
         {
@@ -217,12 +171,19 @@ namespace SameFormTest
             betTip.Maximum = pariInt;
             cashOutAmount.Text = "0";
             betTip.Enabled = true;
+            if (betTip.Minimum > pariInt)
+            {
+                betTip.Minimum = pariInt;
+            }
+            if (betTip.Maximum > pariInt)
+            {
+                betTip.Maximum = pariInt;
+            }
         }
 
         private void cashOutbtn_Click(object sender, EventArgs e)
         {
             //Reset values
-            //pari.Text = (int.Parse(pari.Text) + dobivka).ToString();
             pariInt = pariInt + dobivka;
             update();
             reset();
@@ -230,14 +191,11 @@ namespace SameFormTest
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            
             picBoxNext.Image = cards[rand.Next(MIN_SIZE, MAX_SIZE) - 1];
-            
         }
         //Funkcija za zavrsuvanje na igra
         private void endGame()
         {
-            //pari.Text = (int.Parse(pari.Text) + dobivka).ToString();
             pariInt = pariInt + dobivka;
             cashOutMoney = int.Parse(pari.Text);
             reset();
@@ -246,7 +204,6 @@ namespace SameFormTest
         private void endGamebtn_Click(object sender, EventArgs e)
         {
             endGame();
-
         }
 
         private void HiLowForm_FormClosing(object sender, FormClosingEventArgs e)
