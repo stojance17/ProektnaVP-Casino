@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SameFormTest
-{
+{ 
     public partial class GlavnaForma : Form
     {
         public GlavnaForma()
@@ -21,50 +21,46 @@ namespace SameFormTest
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+           
+            povikajHiLow();
+          
+        }
+        private void povikajHiLow()
+        {
+            if (proverkaPari())
+            {
+                vkupnoPari = vkupnoPari - int.Parse(pariZaSlednaIgra.Text);
+                HiLowForm HiLowForm1 = new HiLowForm(int.Parse(pariZaSlednaIgra.Text));
+                HiLowForm1.Width = this.Width;
+                HiLowForm1.Height = this.Height;
+                HiLowForm1.StartPosition = FormStartPosition.Manual;
+                HiLowForm1.Location = new Point(this.Location.X, this.Location.Y);
+                this.Visible = false;
+                HiLowForm1.ShowDialog();
+                vkupnoPari = vkupnoPari + HiLowForm1.cashOutMoney;
+                update();
+                this.Location = HiLowForm1.Location;
+                this.Width = HiLowForm1.Width;
+                this.Height = HiLowForm1.Height;
+                this.Visible = true;
+            }
+        }
+
+        private bool proverkaPari()
+        {
             //Pravi proverki dali ima dovolno pari i dali e korekten inputot za da nema exception
-            if (pariZaSlednaIgra.Text == "" || int.Parse(pariZaSlednaIgra.Text)==0)
+            if (pariZaSlednaIgra.Text == "" || int.Parse(pariZaSlednaIgra.Text) == 0)
             {
                 MessageBox.Show("Vnesete validna suma za sledna igra");
-                return;
+                return false;
             }
             else if (int.Parse(pariZaSlednaIgra.Text) > vkupnoPari)
             {
                 MessageBox.Show("Nemate tolku pari");
-                return;
+                return false;
             }
-
-            //Odzima suma od vkupnata
-            vkupnoPari = vkupnoPari - int.Parse(pariZaSlednaIgra.Text);
-            
-
-            // #1. Make second form
-            // If you want to make equivalent one, then change Form2 -> Form1
-            HiLowForm HiLowForm1 = new HiLowForm(int.Parse(pariZaSlednaIgra.Text));
-
-            // #2. Set second form's size
-            HiLowForm1.Width = this.Width;
-            HiLowForm1.Height = this.Height;
-
-            // #3. Set second form's start position as same as parent form
-            HiLowForm1.StartPosition = FormStartPosition.Manual;
-            HiLowForm1.Location = new Point(this.Location.X, this.Location.Y);
-
-            // #4. Set parent form's visible to false
-            this.Visible = false;
-
-            // #5. Open second dialog
-            HiLowForm1.ShowDialog();
-
-            //Ja vrakja vrednosta osvoena/izgubena od igrata
-            vkupnoPari = vkupnoPari + HiLowForm1.cashOutMoney;
-            update();
-            this.Location = HiLowForm1.Location;
-            this.Width = HiLowForm1.Width;
-            this.Height = HiLowForm1.Height;
-            // #6. Set parent form's visible to true
-            this.Visible = true;
+            else return true;
         }
-
 
         private void uplatiPari_Click(object sender, EventArgs e)
         {
@@ -75,7 +71,6 @@ namespace SameFormTest
                 vkupnoPari = form.suma;
                 update();
             }
-            
         }
         private void update()
         {
