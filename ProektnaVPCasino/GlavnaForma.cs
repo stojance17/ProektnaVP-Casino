@@ -7,45 +7,48 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO;
 namespace SameFormTest
 { 
     public partial class GlavnaForma : Form
     {
+        public MusicForm mform;
+        private int vkupnoPari { get; set; }
         public GlavnaForma()
         {
             InitializeComponent();
+           
             vkupnoPari = 0;
         }
-        private int vkupnoPari { get; set; }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-           
             povikajHiLow();
-          
         }
         private void povikajHiLow()
         {
             if (proverkaPari())
             {
                 vkupnoPari = vkupnoPari - int.Parse(pariZaSlednaIgra.Text);
-                HiLowForm HiLowForm1 = new HiLowForm(int.Parse(pariZaSlednaIgra.Text));
+                HiLowForm HiLowForm1 = new HiLowForm(this,int.Parse(pariZaSlednaIgra.Text));
                 HiLowForm1.Width = this.Width;
                 HiLowForm1.Height = this.Height;
                 HiLowForm1.StartPosition = FormStartPosition.Manual;
                 HiLowForm1.Location = new Point(this.Location.X, this.Location.Y);
                 this.Visible = false;
+                if(mform != null)
+                    mform.Hide();
+                
                 HiLowForm1.ShowDialog();
                 vkupnoPari = vkupnoPari + HiLowForm1.cashOutMoney;
                 update();
+                this.Location = HiLowForm1.Location;
                 this.Location = HiLowForm1.Location;
                 this.Width = HiLowForm1.Width;
                 this.Height = HiLowForm1.Height;
                 this.Visible = true;
             }
         }
-
         private bool proverkaPari()
         {
             //Pravi proverki dali ima dovolno pari i dali e korekten inputot za da nema exception
@@ -81,6 +84,17 @@ namespace SameFormTest
         private void GlavnaForma_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void musicFormBtn_Click(object sender, EventArgs e)
+        {
+          
+           if(mform == null)
+            {
+                mform = new MusicForm();
+            }
+            mform.Show();
+            
         }
     }
 }

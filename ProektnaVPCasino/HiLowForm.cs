@@ -15,7 +15,7 @@ namespace SameFormTest
 {
     public partial class HiLowForm : Form
     {
-
+        private GlavnaForma parent;
         //Hi-Low Logic
         Random rand;
         public static int MIN_SIZE = 1;
@@ -31,8 +31,8 @@ namespace SameFormTest
         public int i = 0;
         public int cashOutMoney { get; set; }
         public int pariInt { get; set; }
-        public HiLowForm(int startCash)
         
+        public HiLowForm(GlavnaForma parent, int startCash)
         {
             InitializeComponent();
             rand = new Random();
@@ -52,12 +52,12 @@ namespace SameFormTest
             cards.Add(Resources.hearts_13);
             cards.Add(Resources.hearts_14);
             BackColor = Color.White;
+            this.parent = parent;
             pariInt = startCash;
             betTip.Maximum = pariInt;
             timer1.Start();
             update();
             DoubleBuffered = true;
-                       
         }
 
         public void generateNextCard()
@@ -211,6 +211,11 @@ namespace SameFormTest
             pariInt = pariInt + dobivka;
             cashOutMoney = int.Parse(pari.Text);
             reset();
+        }
+
+        private void musicBtn_Click(object sender, EventArgs e)
+        {
+            parent.mform.Show();
         }
     }
 }
