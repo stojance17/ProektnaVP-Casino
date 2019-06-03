@@ -15,29 +15,27 @@ namespace SameFormTest
         public GlavnaForma()
         {
             InitializeComponent();
+            vkupnoPari = 0;
         }
-       
+        private int vkupnoPari { get; set; }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
             //Pravi proverki dali ima dovolno pari i dali e korekten inputot za da nema exception
-            if (pariZaSlednaIgra.Text == "")
+            if (pariZaSlednaIgra.Text == "" || int.Parse(pariZaSlednaIgra.Text)==0)
             {
-                MessageBox.Show("Vnesete suma za sledna igra");
+                MessageBox.Show("Vnesete validna suma za sledna igra");
                 return;
             }
-            else if (int.Parse(pariZaSlednaIgra.Text) <= 0)
-            {
-                return;
-            }
-            else if (int.Parse(pariZaSlednaIgra.Text) > int.Parse(vkPari.Text))
+            else if (int.Parse(pariZaSlednaIgra.Text) > vkupnoPari)
             {
                 MessageBox.Show("Nemate tolku pari");
                 return;
             }
 
             //Odzima suma od vkupnata
-            vkPari.Text = (int.Parse(vkPari.Text) - int.Parse(pariZaSlednaIgra.Text)).ToString();
+            vkupnoPari = vkupnoPari - int.Parse(pariZaSlednaIgra.Text);
+            
 
             // #1. Make second form
             // If you want to make equivalent one, then change Form2 -> Form1
@@ -58,10 +56,36 @@ namespace SameFormTest
             HiLowForm1.ShowDialog();
 
             //Ja vrakja vrednosta osvoena/izgubena od igrata
-            vkPari.Text = (int.Parse(vkPari.Text) + HiLowForm1.cashOutMoney).ToString();
-
+            vkupnoPari = vkupnoPari + HiLowForm1.cashOutMoney;
+            update();
+            this.Location = HiLowForm1.Location;
+            this.Width = HiLowForm1.Width;
+            this.Height = HiLowForm1.Height;
             // #6. Set parent form's visible to true
             this.Visible = true;
+        }
+
+
+        private void uplatiPari_Click(object sender, EventArgs e)
+        {
+            UplataPariForm form = new UplataPariForm();
+            DialogResult result = form.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                vkupnoPari = form.suma;
+                update();
+            }
+            
+        }
+        private void update()
+        {
+            vkPari.Text = vkupnoPari.ToString();
+        }
+
+
+        private void GlavnaForma_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
