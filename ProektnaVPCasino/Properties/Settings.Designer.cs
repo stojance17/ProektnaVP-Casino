@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SameFormTest.Properties {
+namespace ProektnaVPCasino.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

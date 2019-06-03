@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-namespace SameFormTest
+namespace ProektnaVPCasino
 { 
     public partial class GlavnaForma : Form
     {

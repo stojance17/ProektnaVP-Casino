@@ -1,4 +1,4 @@
-﻿namespace SameFormTest
+﻿namespace ProektnaVPCasino
 {
     partial class MusicForm
     {

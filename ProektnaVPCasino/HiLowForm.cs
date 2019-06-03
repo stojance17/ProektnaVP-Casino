@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SameFormTest.Properties;
+using ProektnaVPCasino.Properties;
 using System.Timers;
 using System.Text.RegularExpressions;
 
-namespace SameFormTest
+namespace ProektnaVPCasino
 {
     public partial class HiLowForm : Form
     {
@@ -215,7 +215,11 @@ namespace SameFormTest
 
         private void musicBtn_Click(object sender, EventArgs e)
         {
-            parent.mform.Show();
+            if (parent.mform == null)
+            {
+                parent.mform = new MusicForm();
+            }
+                parent.mform.Show();
         }
     }
 }
