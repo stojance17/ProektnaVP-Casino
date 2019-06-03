@@ -1,4 +1,4 @@
-﻿namespace SameFormTest
+﻿namespace ProektnaVPCasino
 {
     partial class HiLowForm
     {
@@ -178,7 +178,7 @@
             // 
             // picBoxNext
             // 
-            this.picBoxNext.InitialImage = global::SameFormTest.Properties.Resources.hearts_7;
+            this.picBoxNext.InitialImage = global::ProektnaVPCasino.Properties.Resources.hearts_7;
             this.picBoxNext.Location = new System.Drawing.Point(487, 40);
             this.picBoxNext.Name = "picBoxNext";
             this.picBoxNext.Size = new System.Drawing.Size(143, 197);
@@ -187,8 +187,8 @@
             // 
             // picBoxCurr
             // 
-            this.picBoxCurr.Image = global::SameFormTest.Properties.Resources.hearts_7;
-            this.picBoxCurr.InitialImage = global::SameFormTest.Properties.Resources.hearts_7;
+            this.picBoxCurr.Image = global::ProektnaVPCasino.Properties.Resources.hearts_7;
+            this.picBoxCurr.InitialImage = global::ProektnaVPCasino.Properties.Resources.hearts_7;
             this.picBoxCurr.Location = new System.Drawing.Point(125, 40);
             this.picBoxCurr.Name = "picBoxCurr";
             this.picBoxCurr.Size = new System.Drawing.Size(143, 197);
