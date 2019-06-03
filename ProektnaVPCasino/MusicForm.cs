@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SameFormTest.Properties;
+using ProektnaVPCasino.Properties;
 using WMPLib;
 using AxWMPLib;
 using System.IO;
-namespace SameFormTest
+namespace ProektnaVPCasino
 {
     public partial class MusicForm : Form
     {

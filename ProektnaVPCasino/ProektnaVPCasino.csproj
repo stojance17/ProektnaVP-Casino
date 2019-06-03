@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{88E06B08-14FE-4AAB-B118-5E53C8B0ED24}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>SameFormTest</RootNamespace>
-    <AssemblyName>SameFormTest</AssemblyName>
+    <RootNamespace>ProektnaVPCasino</RootNamespace>
+    <AssemblyName>ProektnaVPCasino</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
